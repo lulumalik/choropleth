@@ -1,26 +1,12 @@
 <template>
-  <div class="hello">
+  <div>
     <div style="position: relative">
-      <div style="position: absolute; right: 0; top: 0; z-index: 1000000">
-        Data Click Geojson
-        <div>
-          <table>
-            <tbody>
-              <tr v-for="(value, key) in dataClick" :key="key">
-                <td>{{ key }}</td>
-                <td>{{ value }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
       <div id="map" style="height: 90vh; widht: 100vw"></div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import L from "leaflet";
 export default {
   data() {
@@ -39,13 +25,6 @@ export default {
       this.map
     );
 
-    axios.get("/us.json").then((res) => {
-      // console.log(res)
-      L.geoJson(res.data, {
-        style: this.styling, // this + . + nama function
-        onEachFeature: this.onEachFeature,
-      }).addTo(this.map);
-    });
   },
   methods: {
     styling(e) {
